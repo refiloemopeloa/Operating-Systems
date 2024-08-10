@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/arguments.dir/arguments.c.o -o arguments 
