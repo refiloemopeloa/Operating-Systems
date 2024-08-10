@@ -66,6 +66,7 @@ CMAKE_BINARY_DIR = "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/Sc
 all: CMakeFiles/cpu.dir/all
 all: CMakeFiles/hello_world.dir/all
 all: CMakeFiles/arguments.dir/all
+all: CMakeFiles/fork.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -76,6 +77,7 @@ preinstall:
 clean: CMakeFiles/cpu.dir/clean
 clean: CMakeFiles/hello_world.dir/clean
 clean: CMakeFiles/arguments.dir/clean
+clean: CMakeFiles/fork.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -111,7 +113,7 @@ CMakeFiles/cpu.dir/clean:
 CMakeFiles/hello_world.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles" --progress-num=5,6 "Built target hello_world"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles" --progress-num=7,8 "Built target hello_world"
 .PHONY : CMakeFiles/hello_world.dir/all
 
 # Build rule for subdir invocation for target.
@@ -155,6 +157,32 @@ arguments: CMakeFiles/arguments.dir/rule
 CMakeFiles/arguments.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/arguments.dir/build.make CMakeFiles/arguments.dir/clean
 .PHONY : CMakeFiles/arguments.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/fork.dir
+
+# All Build rule for target.
+CMakeFiles/fork.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fork.dir/build.make CMakeFiles/fork.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fork.dir/build.make CMakeFiles/fork.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles" --progress-num=5,6 "Built target fork"
+.PHONY : CMakeFiles/fork.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/fork.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/fork.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles" 0
+.PHONY : CMakeFiles/fork.dir/rule
+
+# Convenience name for target.
+fork: CMakeFiles/fork.dir/rule
+.PHONY : fork
+
+# clean rule for target.
+CMakeFiles/fork.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fork.dir/build.make CMakeFiles/fork.dir/clean
+.PHONY : CMakeFiles/fork.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

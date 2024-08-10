@@ -155,6 +155,19 @@ arguments/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/arguments.dir/build.make CMakeFiles/arguments.dir/build
 .PHONY : arguments/fast
 
+#=============================================================================
+# Target rules for targets named fork
+
+# Build rule for target.
+fork: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 fork
+.PHONY : fork
+
+# fast build rule for target.
+fork/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fork.dir/build.make CMakeFiles/fork.dir/build
+.PHONY : fork/fast
+
 arguments.o: arguments.c.o
 .PHONY : arguments.o
 
@@ -203,6 +216,30 @@ cpu.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpu.dir/build.make CMakeFiles/cpu.dir/cpu.c.s
 .PHONY : cpu.c.s
 
+fork.o: fork.c.o
+.PHONY : fork.o
+
+# target to build an object file
+fork.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fork.dir/build.make CMakeFiles/fork.dir/fork.c.o
+.PHONY : fork.c.o
+
+fork.i: fork.c.i
+.PHONY : fork.i
+
+# target to preprocess a source file
+fork.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fork.dir/build.make CMakeFiles/fork.dir/fork.c.i
+.PHONY : fork.c.i
+
+fork.s: fork.c.s
+.PHONY : fork.s
+
+# target to generate assembly for a file
+fork.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fork.dir/build.make CMakeFiles/fork.dir/fork.c.s
+.PHONY : fork.c.s
+
 hello_world.o: hello_world.c.o
 .PHONY : hello_world.o
 
@@ -237,6 +274,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... arguments"
 	@echo "... cpu"
+	@echo "... fork"
 	@echo "... hello_world"
 	@echo "... arguments.o"
 	@echo "... arguments.i"
@@ -244,6 +282,9 @@ help:
 	@echo "... cpu.o"
 	@echo "... cpu.i"
 	@echo "... cpu.s"
+	@echo "... fork.o"
+	@echo "... fork.i"
+	@echo "... fork.s"
 	@echo "... hello_world.o"
 	@echo "... hello_world.i"
 	@echo "... hello_world.s"
