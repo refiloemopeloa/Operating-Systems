@@ -7,6 +7,7 @@ set(CMAKE_C_STANDARD 11)
 add_executable(cpu cpu.c)
 add_executable(hello_world hello_world.c)
 add_executable(arguments arguments.c)
+add_executable(fork fork.c)
 
 
 #end
