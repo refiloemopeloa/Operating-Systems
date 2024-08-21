@@ -2,5 +2,13 @@
 /mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/hello_world.dir
 /mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/arguments.dir
 /mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/fork.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/wait.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/wait-return.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/zombies.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/clone-process.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/catch-signal.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/catch-throw.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/catch-test.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/loop-fork.dir
 /mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/edit_cache.dir
 /mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/Process API/cmake-build-debug/CMakeFiles/rebuild_cache.dir

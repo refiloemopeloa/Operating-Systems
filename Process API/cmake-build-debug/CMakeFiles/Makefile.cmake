@@ -46,4 +46,12 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/hello_world.dir/DependInfo.cmake"
   "CMakeFiles/arguments.dir/DependInfo.cmake"
   "CMakeFiles/fork.dir/DependInfo.cmake"
+  "CMakeFiles/wait.dir/DependInfo.cmake"
+  "CMakeFiles/wait-return.dir/DependInfo.cmake"
+  "CMakeFiles/zombies.dir/DependInfo.cmake"
+  "CMakeFiles/clone-process.dir/DependInfo.cmake"
+  "CMakeFiles/catch-signal.dir/DependInfo.cmake"
+  "CMakeFiles/catch-throw.dir/DependInfo.cmake"
+  "CMakeFiles/catch-test.dir/DependInfo.cmake"
+  "CMakeFiles/loop-fork.dir/DependInfo.cmake"
   )
