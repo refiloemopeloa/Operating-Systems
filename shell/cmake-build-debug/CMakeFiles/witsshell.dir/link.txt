@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/witsshell.dir/witsshell.c.o -o witsshell 

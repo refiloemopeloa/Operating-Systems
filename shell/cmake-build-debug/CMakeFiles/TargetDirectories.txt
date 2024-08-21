@@ -1,0 +1,3 @@
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/cmake-build-debug/CMakeFiles/witsshell.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/cmake-build-debug/CMakeFiles/rebuild_cache.dir

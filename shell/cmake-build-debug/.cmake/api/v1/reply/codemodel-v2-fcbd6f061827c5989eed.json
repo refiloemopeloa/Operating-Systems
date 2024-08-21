@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Code",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "witsshell::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-witsshell-Debug-624f57343c2b581d4507.json",
+					"name" : "witsshell",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/cmake-build-debug",
+		"source" : "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
