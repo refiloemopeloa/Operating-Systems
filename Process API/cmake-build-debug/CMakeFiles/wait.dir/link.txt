@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/wait.dir/wait.c.o -o wait 

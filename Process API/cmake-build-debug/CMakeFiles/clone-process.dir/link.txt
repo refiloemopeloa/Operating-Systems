@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/clone-process.dir/clone-process.c.o -o clone-process 

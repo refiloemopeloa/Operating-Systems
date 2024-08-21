@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/wait-return.dir/wait-return.c.o -o wait-return 

@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/catch-throw.dir/catch-throw.c.o -o catch-throw 

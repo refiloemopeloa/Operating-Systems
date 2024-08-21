@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/catch-test.dir/catch-test.c.o -o catch-test 
