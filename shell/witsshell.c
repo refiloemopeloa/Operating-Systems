@@ -20,6 +20,29 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
     return returned_array;
 }
 
+char *get_file(FILE *file_ptr, char file_name[],  size_t length, char mode[]) {
+    if (strcmp(mode, "rb") == 0) {
+        file_ptr = fopen(file_name, mode);
+        if (file_ptr) {
+            fseek(file_ptr, 0, SEEK_END);
+            length = ftell(file_ptr);
+            fseek(file_ptr, 0, SEEK_SET);
+            char *file_contents = (char *) malloc(length * sizeof(char));
+            if (file_contents) {
+                fread(file_contents, sizeof(char), length, file_ptr);
+            }
+            fclose(file_ptr);
+            return file_contents;
+        } else {
+            fprintf(stderr, "%s does not exist.", file_name);
+            fclose(file_ptr);
+            // return;
+        }
+    } else {
+        fprintf(stderr, "Please use te get_file() method with ""rb"" mode");
+        // return;
+    }
+}
 
 
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
@@ -60,6 +83,20 @@ int main(int MainArgc, char *MainArgv[]) {
             printf("witsshell> ");
             shell(character_count, buffer, &buffer_size, split_array, split_array_size, &status, "interactive");
         }
+    }else {
+        //batch mode
+        FILE *batch_file;
+        char *file_name = MainArgv[1];
+        size_t argument_length;
+        char *file_contents = get_file(batch_file, file_name, character_count, "rb");
+        char **argument_list = (char **) malloc(sizeof(char *) * MAX);
+        split(argument_list, file_contents, &argument_length, "\n");
+        int i = 0;
+        while (1) {
+            shell(character_count, argument_list[i], &buffer_size, split_array, split_array_size, &status, "batch");
+            i++;
+        }
+        free(argument_list);
     }
     free(split_array);
 }
