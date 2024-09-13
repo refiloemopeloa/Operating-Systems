@@ -82,6 +82,27 @@ char *reform_string(char **split_array, size_t split_array_size, size_t char_siz
     return new_string;
 }
 
+char *valid_path(char *exe) {
+    char *path = (char *) malloc(MAX * sizeof(char));
+    strcpy(path, PATH[0]);
+    strcat(path, exe);
+    if (access(path, X_OK) == 0) {
+        return path;
+    }
+
+    return "\0";
+}
+
+void command(char **arg_list) {
+    char *path = valid_path(arg_list[0]);
+    if (path[0] == '\0') {
+        fprintf(stderr, "%s: No such file or directory\n", path);
+        return;
+    }
+    if (execv(path, arg_list) == -1) {
+        fprintf(stderr, "'%s' doesn't exist.\n", arg_list[0]);
+    }
+}
 
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
@@ -143,6 +164,16 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
                 return;
             }
         }
+    }
+
+    pid_t p = fork();
+    if (p == 0) {
+        command(split_array);
+        // if (strcmp(split_array[0], "echo") == 0) { else {
+        // }
+        exit(0);
+    } else {
+        waitpid(-1, status, 0);
     }
 }
 
