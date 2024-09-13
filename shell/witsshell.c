@@ -126,6 +126,24 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
             }
         }
     }
+
+    if (strcmp(split_array[0], "path") == 0) {
+        if (split_array_size == 1) {
+            if (path_args == 0)
+                strcpy(PATH[0], "");
+            else
+                for (int i = 0; i < path_args; i++)
+                    strcpy(PATH[i], "");
+            path_args = split_array_size;
+            return;
+        } else {
+            path_args = split_array_size - 1;
+            for (int i = 1; i < split_array_size; i++) {
+                strcpy(PATH[i - 1], split_array[i]);
+                return;
+            }
+        }
+    }
 }
 
 
@@ -142,6 +160,11 @@ int main(int MainArgc, char *MainArgv[]) {
     char **split_array = (char **) malloc(sizeof(char *) * MAX);
     int status;
 
+    PATH = (char **) malloc(sizeof(char *) * MAX);
+    for (int i = 0; i < MAX; i++) {
+        PATH[i] = (char *) malloc(sizeof(char) * 256);
+    }
+    strcpy(PATH[0], "/bin/");
 
     bool is_batch = false;
     if (MainArgc > 1) {
