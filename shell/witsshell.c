@@ -45,6 +45,44 @@ char *get_file(FILE *file_ptr, char file_name[], size_t length, char mode[]) {
 }
 
 
+char *apostrophe_string(char *reformed_string, size_t string_size) {
+    char *token = strchr(reformed_string, '\'');
+    char *token_string = (char *) malloc(sizeof(char) * string_size);
+    char *returned_string = (char *) malloc(sizeof(char) * string_size);
+    strcpy(token_string, reformed_string);
+    token_string = strtok(token_string, "\'");
+    if (token == NULL)
+        return NULL;
+    if (token_string != NULL)
+        strcat(returned_string, token_string);
+    int count = 0;
+    while (token != NULL) {
+        count++;
+        token = token + 1;
+        token_string = strtok(NULL, "\'");
+        if (token_string != NULL)
+            strcat(returned_string, token_string);
+        token = strchr(token, '\'');
+    }
+
+    if (count % 2 != 0) {
+        return NULL;
+    }
+
+    return returned_string;
+}
+
+char *reform_string(char **split_array, size_t split_array_size, size_t char_size) {
+    char *new_string = (char *) malloc(char_size * sizeof(char));
+    for (int i = 1; i < split_array_size - 1; i++) {
+        strcat(new_string, split_array[i]);
+        strcat(new_string, " ");
+    }
+    strcat(new_string, split_array[split_array_size - 1]);
+    return new_string;
+}
+
+
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
     if (strcmp(mode, "interactive") == 0) {
@@ -59,10 +97,34 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
 
     split_array = split(split_array_size, buffer, &split_array_size, " ");
 
-
     if (strcmp(buffer, "exit") == 0) {
         free(split_array);
         exit(0);
+    }
+
+
+    if (strcmp(split_array[0], "cd") == 0) {
+        char *apostrophe_str = apostrophe_string(reform_string(split_array, split_array_size, character_count),
+                                                 character_count);
+        if (apostrophe_str != NULL) {
+            if (chdir(apostrophe_str) != 0) {
+                fprintf(stderr, "The specified directory does not exist.\n");
+            }
+            free(apostrophe_str);
+            return;
+        } else {
+            if (split_array_size == 2) {
+                if (chdir(split_array[1]) != 0) {
+                    fprintf(stderr, "The specified directory does not exist.\n");
+                }
+                return;
+            } else if (split_array_size != 2) {
+                fprintf(
+                    stderr,
+                    "Please enter cd folllowed by a directory. For directories with spaces, please surround the directory string with ''.\n");
+                return;
+            }
+        }
     }
 }
 
