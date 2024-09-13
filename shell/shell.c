@@ -204,7 +204,7 @@ int main(int MainArgc, char *MainArgv[]) {
     if (!is_batch) {
         //interactive mode
         while (1) {
-            printf("witsshell> ");
+            printf("shell> ");
             shell(character_count, buffer, &buffer_size, split_array, split_array_size, &status, "interactive");
         }
     } else {

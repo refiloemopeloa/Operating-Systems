@@ -1,7 +1,7 @@
-witsshell: witsshell.c
-	gcc witsshell.c -o witsshell;
+shell: shell.c
+	gcc shell.c -o shell;
 
 
 clean:
-	rm -rf witsshell
+	rm -rf shell
 
