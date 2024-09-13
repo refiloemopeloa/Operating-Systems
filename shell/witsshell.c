@@ -20,7 +20,7 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
     return returned_array;
 }
 
-char *get_file(FILE *file_ptr, char file_name[],  size_t length, char mode[]) {
+char *get_file(FILE *file_ptr, char file_name[], size_t length, char mode[]) {
     if (strcmp(mode, "rb") == 0) {
         file_ptr = fopen(file_name, mode);
         if (file_ptr) {
@@ -57,6 +57,8 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         buffer[strcspn(buffer, "\n")] = 0;
     }
 
+    split_array = split(split_array_size, buffer, &split_array_size, " ");
+
 
     if (strcmp(buffer, "exit") == 0) {
         free(split_array);
@@ -89,7 +91,7 @@ int main(int MainArgc, char *MainArgv[]) {
             printf("witsshell> ");
             shell(character_count, buffer, &buffer_size, split_array, split_array_size, &status, "interactive");
         }
-    }else {
+    } else {
         //batch mode
         FILE *batch_file;
         char *file_name = MainArgv[1];
