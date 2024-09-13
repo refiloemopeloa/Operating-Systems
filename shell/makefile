@@ -1,4 +1,4 @@
-witsshell:
+witsshell: witsshell.c
 	gcc witsshell.c -o witsshell;
 
 
