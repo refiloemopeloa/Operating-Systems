@@ -56,6 +56,12 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         // character_count = *buffer_size;
         buffer[strcspn(buffer, "\n")] = 0;
     }
+
+
+    if (strcmp(buffer, "exit") == 0) {
+        free(split_array);
+        exit(0);
+    }
 }
 
 
