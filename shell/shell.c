@@ -156,18 +156,18 @@ void redirect(char **split_array, int split_array_size, int key) {
         perror("Enter one file for redirection only.\n");
         return;
     }
-    if (strcmp(split_array[key + 1], ">")==0) {
+    if (strcmp(split_array[key + 1], ">") == 0) {
         perror("Enter \">\" followed by a file name.");
         return;
     }
-    char **args = (char **) malloc(sizeof(char *)*(key+1));
+    char **args = (char **) malloc(sizeof(char *) * (key + 1));
 
     for (int i = 0; i < key; i++) {
         args[i] = split_array[i];
     }
     args[key] = NULL;
 
-    int original_out[2] = {-1,-1};
+    int original_out[2] = {-1, -1};
     int original_out_result = write_to_file(original_out, split_array[key + 1], args, key);
     close_file(original_out[0], original_out[1]);
 }
@@ -312,7 +312,7 @@ int main(int MainArgc, char *MainArgv[]) {
     // = getline(&buffer, &buffer_size, stdin);     //number of characters stored in character_count
 
     //buffer[strcspn(buffer, "\n")] = 0;      // remove '\n' from end of line
-    int split_array_size=MAX;
+    int split_array_size = MAX;
     char **split_array = (char **) malloc(sizeof(char *) * MAX);
     int status;
 
