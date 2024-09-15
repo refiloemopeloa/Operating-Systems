@@ -82,9 +82,9 @@ char *apostrophe_string(char *reformed_string, size_t string_size) {
     return returned_string;
 }
 
-char *reform_string(char **split_array, size_t split_array_size, size_t char_size) {
+char *reform_string(int start,char **split_array, size_t split_array_size, size_t char_size) {
     char *new_string = (char *) malloc(char_size * sizeof(char));
-    for (int i = 1; i < split_array_size - 1; i++) {
+    for (int i = start; i < split_array_size - 1; i++) {
         strcat(new_string, split_array[i]);
         strcat(new_string, " ");
     }
@@ -199,7 +199,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
 
 
     if (strcmp(split_array[0], "cd") == 0) {
-        char *apostrophe_str = apostrophe_string(reform_string(split_array, split_array_size, character_count),
+        char *apostrophe_str = apostrophe_string(reform_string(1,split_array, split_array_size, character_count),
                                                  character_count);
         if (apostrophe_str != NULL) {
             if (chdir(apostrophe_str) != 0) {
