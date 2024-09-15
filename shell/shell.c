@@ -6,6 +6,7 @@
 #include <string.h>
 #include <assert.h>
 #include <fcntl.h>
+#include <errno.h>
 
 #define MAX 32
 char **PATH;
@@ -104,10 +105,11 @@ char *valid_path(char *exe) {
 void command(char **arg_list) {
     char *path = valid_path(arg_list[0]);
     if (path[0] == '\0') {
-        fprintf(stderr, "%s: No such file or directory\n", path);
+        perror(arg_list[0]);
         return;
     }
     if (execv(path, arg_list) == -1) {
+        perror(arg_list[0]);
         fprintf(stderr, "'%s' doesn't exist.\n", arg_list[0]);
     }
 }
