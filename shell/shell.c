@@ -261,20 +261,44 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         }
     }
 
-    pid_t p = fork();
-    if (p == 0) {
-        for (int i = 0; i < split_array_size; i++) {
-            if (strcmp(split_array[i], ">") == 0) {
-                redirect(split_array, split_array_size, i);
+    int parallel_count = parallel_check(split_array, split_array_size);
+    if (parallel_count < 1) {
+        pid_t p = fork();
+        if (p == 0) {
+            for (int i = 0; i < split_array_size; i++) {
+                if (strcmp(split_array[i], ">") == 0) {
+                    redirect(split_array, split_array_size, i);
+                    exit(0);
+                }
+            }
+            command(split_array);
+            exit(0);
+        } else {
+            waitpid(-1, status, 0);
+        }
+    }
+    else if (parallel_count > 0) {
+        int *parallel_pos = parallel_positions(split_array, split_array_size, parallel_count);
+        char *reformed_string = reform_string(0,split_array,split_array_size, character_count);
+        char **parallel_args = split(parallel_count+1,reformed_string, &parallel_count, " & ");
+
+        for (int i=0; i<parallel_count;i++) {
+            if (fork() == 0) {
+                int current_arg_size=0;
+                char **current_arg = split(MAX, parallel_args[i],&current_arg_size," \t");
+                for (int i = 0; i < current_arg_size; i++) {
+                    if (strcmp(current_arg[i], ">") == 0) {
+                        redirect(current_arg, current_arg_size, i);
+                        exit(0);
+                    }
+                }
+                command(current_arg);
                 exit(0);
             }
         }
-        command(split_array);
-        // if (strcmp(split_array[0], "echo") == 0) { else {
-        // }
-        exit(0);
-    } else {
-        waitpid(-1, status, 0);
+        for (int i=0; i<parallel_count+1;i++) {
+            waitpid(-1, status, 0);
+        }
     }
 }
 
