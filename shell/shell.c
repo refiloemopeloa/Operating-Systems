@@ -129,8 +129,13 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
 
     split_array = split(split_array_size, buffer, &split_array_size, " ");
 
-
-    if (strcmp(buffer, "exit") == 0) {
+    if (strcmp(split_array[0], "exit") == 0) {
+        if (split_array_size > 1) {
+            errno = E2BIG;
+            perror("exit");
+            fprintf(stderr, "exit accepts no arguments.\n");
+            return;
+        }
         free(split_array);
         exit(0);
     }
