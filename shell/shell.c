@@ -14,9 +14,17 @@ int path_args = 0;
 char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *delimiter) {
     *(buffer_size) = 0;
     char **returned_array = (char **) malloc(sizeof(char *) * split_array_size);
-    while ((*(returned_array + *(buffer_size)) = strsep(&buffer, delimiter)) != NULL) {
+
+    char *token = strtok(buffer, delimiter);
+
+    while (token != NULL) {
+        *(returned_array + *(buffer_size)) = token;
         *(buffer_size) = *(buffer_size) + 1;
+        token = strtok(NULL, delimiter);
     }
+    // while ((*(returned_array + *(buffer_size)) = strsep(&buffer, delimiter)) != NULL) {
+    //     *(buffer_size) = *(buffer_size) + 1;
+    // }
     return returned_array;
 }
 
@@ -104,6 +112,7 @@ void command(char **arg_list) {
     }
 }
 
+
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
     if (strcmp(mode, "interactive") == 0) {
@@ -117,6 +126,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
     }
 
     split_array = split(split_array_size, buffer, &split_array_size, " ");
+
 
     if (strcmp(buffer, "exit") == 0) {
         free(split_array);
