@@ -204,7 +204,7 @@ int main(int MainArgc, char *MainArgv[]) {
     // = getline(&buffer, &buffer_size, stdin);     //number of characters stored in character_count
 
     //buffer[strcspn(buffer, "\n")] = 0;      // remove '\n' from end of line
-    int split_array_size;
+    int split_array_size=MAX;
     char **split_array = (char **) malloc(sizeof(char *) * MAX);
     int status;
 
