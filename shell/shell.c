@@ -172,6 +172,27 @@ void redirect(char **split_array, int split_array_size, int key) {
     close_file(original_out[0], original_out[1]);
 }
 
+int *parallel_positions(char **split_array, int split_array_size, int count) {
+    int *positions = (int *) malloc(count * sizeof(int));
+    for (int i = 0, j=0; i < split_array_size; i++) {
+        if (strcmp(split_array[i], "&")==0) {
+            positions[j] = i;
+            j++;
+        }
+    }
+        return positions;
+}
+
+int parallel_check(char **split_array, int split_array_size) {
+    int count = 0;
+    for (int i = 0; i < split_array_size; i++) {
+        if (strcmp(split_array[i], "&")==0) {
+            count++;
+        }
+    }
+    return count;
+}
+
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
     if (strcmp(mode, "interactive") == 0) {
