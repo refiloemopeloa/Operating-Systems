@@ -205,7 +205,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         buffer[strcspn(buffer, "\n")] = 0;
     }
 
-    split_array = split(split_array_size, buffer, &split_array_size, " ");
+    split_array = split(split_array_size, buffer, &split_array_size, " \t");
 
     if (strcmp(split_array[0], "exit") == 0) {
         if (split_array_size > 1) {
