@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/witsshell.c" "CMakeFiles/witsshell.dir/witsshell.c.o" "gcc" "CMakeFiles/witsshell.dir/witsshell.c.o.d"
+  "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Projects/1/Operating-Systems/shell/shell.c" "CMakeFiles/shell.dir/shell.c.o" "gcc" "CMakeFiles/shell.dir/shell.c.o.d"
   )
 
 # Targets to which this target links.

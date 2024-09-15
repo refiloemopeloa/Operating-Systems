@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell"
+CMAKE_SOURCE_DIR = "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Projects/1/Operating-Systems/shell"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/cmake-build-debug"
+CMAKE_BINARY_DIR = "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Projects/1/Operating-Systems/shell/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/cmake-build-debug/CMakeFiles" "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/cmake-build-debug//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Projects/1/Operating-Systems/shell/cmake-build-debug/CMakeFiles" "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Projects/1/Operating-Systems/shell/cmake-build-debug//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Labs/1/Lab1Files/Operating-Systems/shell/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/matth/OneDrive - University of Witwatersrand/School/2024/COMS/3010A - OS/Projects/1/Operating-Systems/shell/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named witsshell
+# Target rules for targets named shell
 
 # Build rule for target.
-witsshell: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 witsshell
-.PHONY : witsshell
+shell: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 shell
+.PHONY : shell
 
 # fast build rule for target.
-witsshell/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/witsshell.dir/build.make CMakeFiles/witsshell.dir/build
-.PHONY : witsshell/fast
+shell/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shell.dir/build.make CMakeFiles/shell.dir/build
+.PHONY : shell/fast
 
-witsshell.o: witsshell.c.o
-.PHONY : witsshell.o
+shell.o: shell.c.o
+.PHONY : shell.o
 
 # target to build an object file
-witsshell.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/witsshell.dir/build.make CMakeFiles/witsshell.dir/witsshell.c.o
-.PHONY : witsshell.c.o
+shell.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shell.dir/build.make CMakeFiles/shell.dir/shell.c.o
+.PHONY : shell.c.o
 
-witsshell.i: witsshell.c.i
-.PHONY : witsshell.i
+shell.i: shell.c.i
+.PHONY : shell.i
 
 # target to preprocess a source file
-witsshell.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/witsshell.dir/build.make CMakeFiles/witsshell.dir/witsshell.c.i
-.PHONY : witsshell.c.i
+shell.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shell.dir/build.make CMakeFiles/shell.dir/shell.c.i
+.PHONY : shell.c.i
 
-witsshell.s: witsshell.c.s
-.PHONY : witsshell.s
+shell.s: shell.c.s
+.PHONY : shell.s
 
 # target to generate assembly for a file
-witsshell.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/witsshell.dir/build.make CMakeFiles/witsshell.dir/witsshell.c.s
-.PHONY : witsshell.c.s
+shell.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shell.dir/build.make CMakeFiles/shell.dir/shell.c.s
+.PHONY : shell.c.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... witsshell"
-	@echo "... witsshell.o"
-	@echo "... witsshell.i"
-	@echo "... witsshell.s"
+	@echo "... shell"
+	@echo "... shell.o"
+	@echo "... shell.i"
+	@echo "... shell.s"
 .PHONY : help
 
 

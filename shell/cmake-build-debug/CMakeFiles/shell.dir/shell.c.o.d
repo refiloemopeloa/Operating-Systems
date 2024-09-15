@@ -1,5 +1,5 @@
-CMakeFiles/witsshell.dir/witsshell.c.o: \
- /mnt/c/Users/matth/OneDrive\ -\ University\ of\ Witwatersrand/School/2024/COMS/3010A\ -\ OS/Labs/1/Lab1Files/Operating-Systems/shell/witsshell.c \
+CMakeFiles/shell.dir/shell.c.o: \
+ /mnt/c/Users/matth/OneDrive\ -\ University\ of\ Witwatersrand/School/2024/COMS/3010A\ -\ OS/Projects/1/Operating-Systems/shell/shell.c \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
