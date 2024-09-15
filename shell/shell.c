@@ -23,6 +23,7 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
         *(buffer_size) = *(buffer_size) + 1;
         token = strtok(NULL, delimiter);
     }
+
     // while ((*(returned_array + *(buffer_size)) = strsep(&buffer, delimiter)) != NULL) {
     //     *(buffer_size) = *(buffer_size) + 1;
     // }
@@ -114,6 +115,62 @@ void command(char **arg_list) {
     }
 }
 
+int write_to_file(int *original_array, char file_name[], char args[][256], int key) {
+    int original_out = dup(STDOUT_FILENO); // save the current state of the stdout file descriptor
+    int original_err = dup(STDERR_FILENO);
+
+    int file_desc = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    //open the file with writing permissions or create the file if it doesnt exist
+
+    if (file_desc != -1) {
+        //open returns -1 if the open operation is unsuccessful
+        fflush(stdout); //clear the stdout stream
+        fflush(stderr); //clear the stderr stream
+
+        dup2(file_desc, STDOUT_FILENO); //direct output from stdout to file
+        dup2(file_desc, STDERR_FILENO); //direct output from stderr to file
+        close(file_desc); //close file
+
+        command(args);
+
+        //original_array[0] = original_out;
+        //original_array[1] = original_err;
+        return 0;
+    } else {
+        perror("Error opening the file.\n");
+        return -1;
+    }
+}
+
+void close_file(int original_out, int original_err) {
+    fflush(stdout); //clear stdout stream
+    fflush(stderr); //clear stderr stream
+    dup2(original_out,STDOUT_FILENO); //restore original stdout
+    dup2(original_out,STDERR_FILENO); //restore original stderr
+    close(original_out);
+    close(original_err);
+}
+
+void redirect(char **split_array, int split_array_size, int key) {
+    if (split_array_size - 1 != key + 1) {
+        perror("Enter one file for redirection only.\n");
+        return;
+    }
+    if (strcmp(split_array[key + 1], ">")==0) {
+        perror("Enter \">\" followed by a file name.");
+        return;
+    }
+    char **args = (char **) malloc(sizeof(char *)*(key+1));
+
+    for (int i = 0; i < key; i++) {
+        args[i] = split_array[i];
+    }
+    args[key] = NULL;
+
+    int original_out[2] = {-1,-1};
+    int original_out_result = write_to_file(original_out, split_array[key + 1], args, key);
+    close_file(original_out[0], original_out[1]);
+}
 
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
@@ -185,6 +242,12 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
 
     pid_t p = fork();
     if (p == 0) {
+        for (int i = 0; i < split_array_size; i++) {
+            if (strcmp(split_array[i], ">") == 0) {
+                redirect(split_array, split_array_size, i);
+                exit(0);
+            }
+        }
         command(split_array);
         // if (strcmp(split_array[0], "echo") == 0) { else {
         // }
