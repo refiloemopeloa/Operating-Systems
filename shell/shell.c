@@ -166,7 +166,8 @@ void redirect(char **split_array, int split_array_size, int key) {
         return;
     }
     if (strcmp(split_array[key + 1], ">") == 0) {
-        perror("Enter \">\" followed by a file name.");
+        // perror("Enter \">\" followed by a file name.");
+        error();
         return;
     }
     char **args = (char **) malloc(sizeof(char *) * (key + 1));
