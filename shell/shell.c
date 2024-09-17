@@ -250,9 +250,10 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
                 }
                 return;
             } else if (split_array_size != 2) {
-                fprintf(
-                    stderr,
-                    "Please enter cd folllowed by a directory. For directories with spaces, please surround the directory string with ''.\n");
+                // fprintf(
+                //     stderr,
+                //     "Please enter cd folllowed by a directory. For directories with spaces, please surround the directory string with ''.\n");
+                error();
                 return;
             }
         }
