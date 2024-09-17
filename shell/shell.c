@@ -245,7 +245,8 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         } else {
             if (split_array_size == 2) {
                 if (chdir(split_array[1]) != 0) {
-                    fprintf(stderr, "The specified directory does not exist.\n");
+                    // fprintf(stderr, "The specified directory does not exist.\n");
+                    error();
                 }
                 return;
             } else if (split_array_size != 2) {
