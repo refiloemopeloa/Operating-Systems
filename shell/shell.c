@@ -49,9 +49,8 @@ char *get_file(FILE *file_ptr, char *file_name, size_t length, char *mode) {
             fclose(file_ptr);
             return file_contents;
         } else {
-            fprintf(stderr, "%s does not exist.", file_name);
-            fclose(file_ptr);
-            // return;
+            error();
+            exit(1);
         }
     } else {
         fprintf(stderr, "Please use te get_file() method with ""rb"" mode");
