@@ -294,16 +294,15 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         } else {
             waitpid(-1, status, 0);
         }
-    }
-    else if (parallel_count > 0) {
+    } else if (parallel_count > 0) {
         int *parallel_pos = parallel_positions(split_array, split_array_size, parallel_count);
-        char *reformed_string = reform_string(0,split_array,split_array_size, character_count);
-        char **parallel_args = split(parallel_count+1,reformed_string, &parallel_count, " & ");
+        char *reformed_string = reform_string(0, split_array, split_array_size, character_count);
+        char **parallel_args = split(parallel_count + 1, reformed_string, &parallel_count, " & ");
 
-        for (int i=0; i<parallel_count;i++) {
+        for (int i = 0; i < parallel_count; i++) {
             if (fork() == 0) {
-                int current_arg_size=0;
-                char **current_arg = split(MAX, parallel_args[i],&current_arg_size," \t");
+                int current_arg_size = 0;
+                char **current_arg = split(MAX, parallel_args[i], &current_arg_size, " \t");
                 for (int i = 0; i < current_arg_size; i++) {
                     if (strcmp(current_arg[i], ">") == 0) {
                         redirect(current_arg, current_arg_size, i);
@@ -314,7 +313,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
                 exit(0);
             }
         }
-        for (int i=0; i<parallel_count+1;i++) {
+        for (int i = 0; i < parallel_count + 1; i++) {
             waitpid(-1, status, 0);
         }
     }
@@ -363,7 +362,7 @@ int main(int MainArgc, char *MainArgv[]) {
         char **argument_list = split(MAX, file_contents, &argument_length, "\r\n");
         int i = 0;
         while (1) {
-            if (i==argument_length)
+            if (i == argument_length)
                 exit(0);
             shell(character_count, argument_list[i], &buffer_size, split_array, split_array_size, &status, "batch");
             i++;
