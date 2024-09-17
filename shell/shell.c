@@ -144,7 +144,8 @@ int write_to_file(int *original_array, char file_name[], char args[][256], int k
         //original_array[1] = original_err;
         return 0;
     } else {
-        perror("Error opening the file.\n");
+        // perror("Error opening the file.\n");
+        error();
         return -1;
     }
 }
