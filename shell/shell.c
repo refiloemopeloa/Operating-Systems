@@ -330,6 +330,10 @@ int main(int MainArgc, char *MainArgv[]) {
 
     bool is_batch = false;
     if (MainArgc > 1) {
+        if (MainArgc > 2) {
+            error();
+            exit(1);
+        }
         is_batch = true;
     }
     if (!is_batch) {
