@@ -351,6 +351,8 @@ int main(int MainArgc, char *MainArgv[]) {
         char **argument_list = split(MAX, file_contents, &argument_length, "\r\n");
         int i = 0;
         while (1) {
+            if (i==argument_length)
+                exit(0);
             shell(character_count, argument_list[i], &buffer_size, split_array, split_array_size, &status, "batch");
             i++;
         }
