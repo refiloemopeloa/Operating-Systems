@@ -161,7 +161,8 @@ void close_file(int original_out, int original_err) {
 
 void redirect(char **split_array, int split_array_size, int key) {
     if (split_array_size - 1 != key + 1) {
-        perror("Enter one file for redirection only.\n");
+        // perror("Enter one file for redirection only.\n");
+        error();
         return;
     }
     if (strcmp(split_array[key + 1], ">") == 0) {
