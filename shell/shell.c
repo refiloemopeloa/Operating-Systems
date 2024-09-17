@@ -237,7 +237,8 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
                                                  character_count);
         if (apostrophe_str != NULL) {
             if (chdir(apostrophe_str) != 0) {
-                fprintf(stderr, "The specified directory does not exist.\n");
+                // fprintf(stderr, "The specified directory does not exist.\n");
+                error();
             }
             free(apostrophe_str);
             return;
