@@ -233,7 +233,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
 
 
     if (strcmp(split_array[0], "cd") == 0) {
-        char *apostrophe_str = apostrophe_string(reform_string(1,split_array, split_array_size, character_count),
+        char *apostrophe_str = apostrophe_string(reform_string(1, split_array, split_array_size, character_count),
                                                  character_count);
         if (apostrophe_str != NULL) {
             if (chdir(apostrophe_str) != 0) {
