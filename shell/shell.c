@@ -111,7 +111,8 @@ char *valid_path(char *exe) {
 void command(char **arg_list) {
     char *path = valid_path(arg_list[0]);
     if (path[0] == '\0') {
-        perror(arg_list[0]);
+        // perror(arg_list[0]);
+        error();
         return;
     }
     if (execv(path, arg_list) == -1) {
