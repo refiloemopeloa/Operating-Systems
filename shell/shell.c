@@ -35,7 +35,7 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
     return returned_array;
 }
 
-char *get_file(FILE *file_ptr, char file_name[], size_t length, char mode[]) {
+char *get_file(FILE *file_ptr, char *file_name, size_t length, char *mode) {
     if (strcmp(mode, "rb") == 0) {
         file_ptr = fopen(file_name, mode);
         if (file_ptr) {
