@@ -11,6 +11,7 @@
 #define MAX 32
 char **PATH;
 int path_args = 0;
+int path_last_index = 1;
 
 void error() {
     char error_message[30] = "An error has occurred\n";
