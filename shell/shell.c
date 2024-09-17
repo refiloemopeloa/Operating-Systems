@@ -205,6 +205,8 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         if (character_count == -1) {
             exit(0);
         }
+        if (character_count == 1 && strcmp(buffer,"\n")==0)
+            return;
         // character_count = *buffer_size;
         buffer[strcspn(buffer, "\n")] = 0;
     }
