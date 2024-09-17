@@ -12,6 +12,11 @@
 char **PATH;
 int path_args = 0;
 
+void error() {
+    char error_message[30] = "An error has occurred\n";
+    write(STDERR_FILENO, error_message, strlen(error_message));
+}
+
 char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *delimiter) {
     *(buffer_size) = 0;
     char **returned_array = (char **) malloc(sizeof(char *) * split_array_size);
