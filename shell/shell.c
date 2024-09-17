@@ -184,19 +184,19 @@ void redirect(char **split_array, int split_array_size, int key) {
 
 int *parallel_positions(char **split_array, int split_array_size, int count) {
     int *positions = (int *) malloc(count * sizeof(int));
-    for (int i = 0, j=0; i < split_array_size; i++) {
-        if (strcmp(split_array[i], "&")==0) {
+    for (int i = 0, j = 0; i < split_array_size; i++) {
+        if (strcmp(split_array[i], "&") == 0) {
             positions[j] = i;
             j++;
         }
     }
-        return positions;
+    return positions;
 }
 
 int parallel_check(char **split_array, int split_array_size) {
     int count = 0;
     for (int i = 0; i < split_array_size; i++) {
-        if (strcmp(split_array[i], "&")==0) {
+        if (strcmp(split_array[i], "&") == 0) {
             count++;
         }
     }
@@ -211,7 +211,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         if (character_count == -1) {
             exit(0);
         }
-        if (character_count == 1 && strcmp(buffer,"\n")==0)
+        if (character_count == 1 && strcmp(buffer, "\n") == 0)
             return;
         // character_count = *buffer_size;
         buffer[strcspn(buffer, "\n")] = 0;
