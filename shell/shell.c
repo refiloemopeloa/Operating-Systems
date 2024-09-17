@@ -348,8 +348,7 @@ int main(int MainArgc, char *MainArgv[]) {
         char *file_name = MainArgv[1];
         size_t argument_length;
         char *file_contents = get_file(batch_file, file_name, character_count, "rb");
-        char **argument_list = (char **) malloc(sizeof(char *) * MAX);
-        split(argument_list, file_contents, &argument_length, "\n");
+        char **argument_list = split(MAX, file_contents, &argument_length, "\r\n");
         int i = 0;
         while (1) {
             shell(character_count, argument_list[i], &buffer_size, split_array, split_array_size, &status, "batch");
