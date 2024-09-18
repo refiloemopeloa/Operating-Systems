@@ -216,7 +216,7 @@ int *parallel_positions(char **split_array, int split_array_size, int count) {
 int parallel_check(char **split_array, int split_array_size) {
     int count = 0;
     for (int i = 0; i < split_array_size; i++) {
-        if (strcmp(split_array[i], "&") == 0) {
+        if (strchr(split_array[i], '&')) {
             count++;
         }
     }
