@@ -107,6 +107,8 @@ char *reform_string(int start, char **split_array, size_t split_array_size, size
     char *new_string = (char *) malloc(char_size * sizeof(char));
     int i = start;
     for (i = start; i < split_array_size - 1; i++) {
+        if (split_array_size == 0)
+            return NULL;
         if (i == start) {
             strcpy(new_string, split_array[i]);
         } else
