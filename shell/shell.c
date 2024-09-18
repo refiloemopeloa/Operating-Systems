@@ -360,7 +360,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         } else {
             path_args = split_array_size - 1;
             for (int i = 1; i < split_array_size; i++) {
-                strcpy(PATH[i - 1], split_array[i]);
+                PATH[i - 1] = strdup(split_array[i]);
                 // path_last_index++;
                 return;
             }
