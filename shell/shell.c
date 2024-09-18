@@ -269,6 +269,10 @@ char **reconstruct_redirect(char **split_array, int *split_array_size, size_t ch
             new_array_size++;
         }
     }
+    if (!broke && new_array_size > 2 && new_array_size % 2 != 1) {
+        new_array[2 * *split_array_size - 2] = strdup(reformed_array[*split_array_size - 1]);
+        new_array_size++;
+    }
     free_array(reformed_array, *split_array_size);
 
     reformed_string = reform_string(0, new_array, new_array_size, char_count);
