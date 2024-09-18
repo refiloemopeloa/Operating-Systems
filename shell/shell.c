@@ -126,6 +126,7 @@ char *reform_string(int start, char **split_array, size_t split_array_size, size
             new_string = resized_string;
         }
         strcat(new_string, split_array[split_array_size - 1]);
+    }
     return new_string;
 }
 
