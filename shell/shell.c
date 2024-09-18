@@ -40,7 +40,7 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
 
     char **resized_array = (char **) malloc(sizeof(char *) * (*(buffer_size) + 1));
     for (int i = 0; i < *(buffer_size); i++) {
-        resized_array[i] = returned_array[i];
+        resized_array[i] = strdup(returned_array[i]);
     }
     resized_array[*buffer_size] = NULL;
 
