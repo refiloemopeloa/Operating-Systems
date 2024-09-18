@@ -26,7 +26,8 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
 
     int string_length = 0;
     while (token != NULL) {
-        *(returned_array + *(buffer_size)) = token;
+        string_length = (strlen(token));
+        returned_array[*(buffer_size)] = strdup(token);
         *(buffer_size) = *(buffer_size) + 1;
         token = strtok(NULL, delimiter);
     }
