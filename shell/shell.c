@@ -98,8 +98,12 @@ char *apostrophe_string(char *reformed_string, size_t string_size) {
 
 char *reform_string(int start, char **split_array, size_t split_array_size, size_t char_size) {
     char *new_string = (char *) malloc(char_size * sizeof(char));
-    for (int i = start; i < split_array_size - 1; i++) {
-        strcat(new_string, split_array[i]);
+    int i = start;
+    for (i = start; i < split_array_size - 1; i++) {
+        if (i == start) {
+            strcpy(new_string, split_array[i]);
+        } else
+            strcat(new_string, split_array[i]);
         strcat(new_string, " ");
     }
     strcat(new_string, split_array[split_array_size - 1]);
