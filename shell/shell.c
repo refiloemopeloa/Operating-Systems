@@ -355,6 +355,12 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
             if (fork() == 0) {
                 int current_arg_size = 0;
                 char **current_arg = split(MAX, parallel_args[i], &current_arg_size, " \t");
+                if (strchr(parallel_args[i], '>') && restructured == false) {
+                    current_arg = reconstruct_redirect(current_arg, &current_arg_size, character_count, ">");
+                    restructured = true;
+                    i = -1;
+                    continue;
+                }
                 for (int i = 0; i < current_arg_size; i++) {
                     if (strcmp(current_arg[i], ">") == 0) {
                         redirect(current_arg, current_arg_size, i);
