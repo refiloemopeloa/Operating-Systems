@@ -434,10 +434,11 @@ int main(int MainArgc, char *MainArgv[]) {
     int status;
 
     PATH = (char **) malloc(sizeof(char *) * MAX);
-    for (int i = 0; i < MAX; i++) {
-        PATH[i] = (char *) malloc(sizeof(char) * 256);
-    }
-    strcpy(PATH[0], "/bin/");
+    // for (int i = 0; i < MAX; i++) {
+    //     PATH[i] = (char *) malloc(sizeof(char) * 256);
+    // }
+    PATH[0] = strdup("/bin/");
+    path_args++;
 
     bool is_batch = false;
     if (MainArgc > 1) {
