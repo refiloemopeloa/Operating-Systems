@@ -321,6 +321,37 @@ void cd(int start, char **split_array, int split_array_size, int character_count
     }
 }
 
+void exit_shell(char **split_array, int split_array_size) {
+    //function for exiting shell
+    if (split_array_size > 1) {
+        error();
+        return;
+    }
+    free(split_array);
+    exit(0);
+}
+
+void set_path(char **split_array, int split_array_size) {
+    //function for setting path
+    if (split_array_size == 1) {
+        //set path empty
+        if (path_args == 0)
+            strcpy(PATH[0], "");
+        else
+            for (int i = 0; i < path_args; i++)
+                strcpy(PATH[i], "");
+        path_args = split_array_size;
+        return;
+    } else {
+        //overwrite arguments in path
+        path_args = split_array_size - 1;
+        for (int i = 1; i < split_array_size; i++) {
+            PATH[i - 1] = strdup(split_array[i]);
+        }
+        return;
+    }
+}
+
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
     //overall shell implementation
@@ -365,31 +396,14 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
     }
 
     if (strcmp(split_array[0], "path") == 0) {
-        if (split_array_size == 1) {
-            if (path_args == 0)
-                strcpy(PATH[0], "");
-            else
-                for (int i = 0; i < path_args; i++)
-                    strcpy(PATH[i], "");
-            path_args = split_array_size;
-            // path_last_index = 0;
-            return;
-        } else {
-            path_args = split_array_size - 1;
-            for (int i = 1; i < split_array_size; i++) {
-                PATH[i - 1] = strdup(split_array[i]);
-                // path_last_index++;
-            }
-                return;
-        }
-    }
-    bool restructured = false;
-    int parallel_count = parallel_check(split_array, split_array_size);
         //path
+        set_path(split_array, split_array_size);
+        return;
+    }
+
     bool restructured = false; //flag for if a string has been reformatted or not
     int parallel_count = parallel_check(split_array, split_array_size); //how many children to create
     if (parallel_count < 1) {
-        pid_t p = fork();
         //only make one child for a command
         pid_t p = fork(); //create child
         if (p == 0) {
@@ -406,9 +420,8 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
                     exit(0);
                 }
             }
-            command(split_array);
-            exit(0);
             command(split_array); //execute command
+            exit(0); //exit child process
         } else {
             waitpid(-1, status, 0);
         }
