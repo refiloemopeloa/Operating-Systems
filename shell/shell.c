@@ -378,15 +378,9 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
     }
 
     if (strcmp(split_array[0], "exit") == 0) {
-        if (split_array_size > 1) {
-            // errno = E2BIG;
-            // perror("exit");
-            // fprintf(stderr, "exit accepts no arguments.\n");
-            error();
-            return;
-        }
-        free(split_array);
-        exit(0);
+        //exit
+        exit_shell(split_array, split_array_size);
+        return;
     }
 
     if (strcmp(split_array[0], "cd") == 0) {
