@@ -149,7 +149,8 @@ void command(char **arg_list) {
         error();
         return;
     }
-    if (execv(path, arg_list) == -1) {
+    int exec_status = execv(path, arg_list);
+    if (exec_status == -1) {
         // perror(arg_list[0]);
         // fprintf(stderr, "'%s' doesn't exist.\n", arg_list[0]);
         error();
