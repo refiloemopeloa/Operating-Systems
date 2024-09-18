@@ -256,6 +256,7 @@ char **reconstruct_redirect(char **split_array, int *split_array_size, size_t ch
         new_array_size++;
         }
     }
+    free_array(reformed_array,*split_array_size);
 
     reformed_string = reform_string(0, new_array, (2 * *split_array_size - 1), char_count);
 
