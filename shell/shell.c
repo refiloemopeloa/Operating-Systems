@@ -42,6 +42,7 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
     for (int i = 0; i < *(buffer_size); i++) {
         resized_array[i] = strdup(returned_array[i]);
     }
+    free_array(returned_array,*buffer_size);
     resized_array[*buffer_size] = NULL;
 
 
