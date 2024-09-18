@@ -282,6 +282,32 @@ char **reconstruct_redirect(char **split_array, int *split_array_size, size_t ch
     return reformed_array;
 }
 
+void cd(int start, char **split_array, int split_array_size, int character_count) {
+    char *reformed_string = reform_string(start, split_array, split_array_size, character_count);
+    if (reformed_string != NULL) {
+        if (chdir(reformed_string) != 0) {
+            // fprintf(stderr, "The specified directory does not exist.\n");
+            error();
+        }
+        free(reformed_string);
+        return;
+    } else {
+        if (split_array_size == 2) {
+            if (chdir(split_array[1]) != 0) {
+                // fprintf(stderr, "The specified directory does not exist.\n");
+                error();
+            }
+            return;
+        } else if (split_array_size != 2) {
+            // fprintf(
+            //     stderr,
+            //     "Please enter cd folllowed by a directory. For directories with spaces, please surround the directory string with ''.\n");
+            error();
+            return;
+        }
+    }
+}
+
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
     if (strcmp(mode, "interactive") == 0) {
