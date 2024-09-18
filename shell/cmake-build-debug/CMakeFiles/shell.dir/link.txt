@@ -1,1 +1,0 @@
-/usr/bin/gcc -g CMakeFiles/shell.dir/shell.c.o -o shell 
