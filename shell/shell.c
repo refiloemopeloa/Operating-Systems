@@ -223,6 +223,29 @@ int parallel_check(char **split_array, int split_array_size) {
     return count;
 }
 
+char **reconstruct_redirect(char **split_array, int *split_array_size, size_t char_count, char *delimiter) {
+    char *reformed_string = reform_string(0, split_array, *split_array_size, char_count);
+
+    char **reformed_array = split(MAX, reformed_string, split_array_size, delimiter);
+
+    char **new_array = (char **) malloc(sizeof(char *) * (2 * *split_array_size - 1));
+    char_count = 0;
+    for (int i = 0, j = 0; i <= (*split_array_size); i += 2, j++) {
+        new_array[i] = strdup(reformed_array[j]);
+        char_count += strlen(reformed_array[j]);
+        if ((i + 1) < (2 * *split_array_size - 1) || (i + 1) == 1) {
+            new_array[i + 1] = strdup(delimiter);
+            char_count += strlen(delimiter);
+        }
+    }
+
+    reformed_string = reform_string(0, new_array, (2 * *split_array_size - 1), char_count);
+
+    reformed_array = split(MAX, reformed_string, split_array_size, " \t");
+
+    return reformed_array;
+}
+
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
     if (strcmp(mode, "interactive") == 0) {
