@@ -323,7 +323,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
             }
         }
     }
-
+    bool restructured = false;
     int parallel_count = parallel_check(split_array, split_array_size);
     if (parallel_count < 1) {
         pid_t p = fork();
