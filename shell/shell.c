@@ -76,32 +76,32 @@ char *get_file(FILE *file_ptr, char *file_name, size_t length, char *mode) {
     }
 }
 
-char *apostrophe_string(char *reformed_string, size_t string_size) {
-    char *token = strchr(reformed_string, '\'');
-    char *token_string = (char *) malloc(sizeof(char) * string_size);
-    char *returned_string = (char *) malloc(sizeof(char) * string_size);
-    strcpy(token_string, reformed_string);
-    token_string = strtok(token_string, "\'");
-    if (token == NULL)
-        return NULL;
-    if (token_string != NULL)
-        strcat(returned_string, token_string);
-    int count = 0;
-    while (token != NULL) {
-        count++;
-        token = token + 1;
-        token_string = strtok(NULL, "\'");
-        if (token_string != NULL)
-            strcat(returned_string, token_string);
-        token = strchr(token, '\'');
-    }
-
-    if (count % 2 != 0) {
-        return NULL;
-    }
-
-    return returned_string;
-}
+// char *apostrophe_string(char *reformed_string, size_t string_size) {
+//     char *token = strchr(reformed_string, '\'');
+//     char *token_string = (char *) malloc(sizeof(char) * string_size);
+//     char *returned_string = (char *) malloc(sizeof(char) * string_size);
+//     strcpy(token_string, reformed_string);
+//     token_string = strtok(token_string, "\'");
+//     if (token == NULL)
+//         return NULL;
+//     if (token_string != NULL)
+//         strcat(returned_string, token_string);
+//     int count = 0;
+//     while (token != NULL) {
+//         count++;
+//         token = token + 1;
+//         token_string = strtok(NULL, "\'");
+//         if (token_string != NULL)
+//             strcat(returned_string, token_string);
+//         token = strchr(token, '\'');
+//     }
+//
+//     if (count % 2 != 0) {
+//         return NULL;
+//     }
+//
+//     return returned_string;
+// }
 
 char *reform_string(int start, char **split_array, size_t split_array_size, size_t char_size) {
     char *new_string = (char *) malloc(char_size * sizeof(char));
