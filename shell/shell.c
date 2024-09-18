@@ -392,7 +392,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         int *parallel_pos = parallel_positions(split_array, split_array_size, parallel_count);
         char **reformed_parallel_args = reconstruct_redirect(split_array, &split_array_size, character_count, "&");
         char *reformed_string = reform_string(0, reformed_parallel_args, split_array_size, character_count);
-        char **parallel_args = split(parallel_count + 1, reformed_string, &parallel_count, " & ");
+        char **parallel_args = split(MAX, reformed_string, &parallel_count, "&");
 
         for (int i = 0; i < parallel_count; i++) {
             if (fork() == 0) {
