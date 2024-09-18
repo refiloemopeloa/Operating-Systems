@@ -42,9 +42,8 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
     for (int i = 0; i < *(buffer_size); i++) {
         resized_array[i] = strdup(returned_array[i]);
     }
-    free_array(returned_array,*buffer_size);
+    free_array(returned_array, *buffer_size);
     resized_array[*buffer_size] = NULL;
-
 
     // while ((*(returned_array + *(buffer_size)) = strsep(&buffer, delimiter)) != NULL) {
     //     *(buffer_size) = *(buffer_size) + 1;
@@ -70,11 +69,12 @@ char *get_file(FILE *file_ptr, char *file_name, size_t length, char *mode) {
             exit(1);
         }
     } else {
-        fprintf(stderr, "Please use te get_file() method with ""rb"" mode");
+        fprintf(stderr, "Please use te get_file() method with "
+                "rb"
+                " mode");
         // return;
     }
 }
-
 
 char *apostrophe_string(char *reformed_string, size_t string_size) {
     char *token = strchr(reformed_string, '\'');
@@ -118,10 +118,10 @@ char *reform_string(int start, char **split_array, size_t split_array_size, size
     } else if (i == split_array_size || i == start)
         strcpy(new_string, split_array[split_array_size - 1]);
     else {
-        if (strlen(new_string)+strlen(split_array[split_array_size - 1])==char_size) {
-            char_size+=strlen(split_array[split_array_size - 1]);
+        if (strlen(new_string) + strlen(split_array[split_array_size - 1]) == char_size) {
+            char_size += strlen(split_array[split_array_size - 1]);
             char *resized_string = (char *) malloc((char_size) * sizeof(char));
-            strcpy(resized_string,new_string);
+            strcpy(resized_string, new_string);
             free(new_string);
             new_string = resized_string;
         }
@@ -162,21 +162,21 @@ int write_to_file(int *original_array, char file_name[], char args[][256], int k
     int original_err = dup(STDERR_FILENO);
 
     int file_desc = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-    //open the file with writing permissions or create the file if it doesnt exist
+    // open the file with writing permissions or create the file if it doesnt exist
 
     if (file_desc != -1) {
-        //open returns -1 if the open operation is unsuccessful
-        fflush(stdout); //clear the stdout stream
-        fflush(stderr); //clear the stderr stream
+        // open returns -1 if the open operation is unsuccessful
+        fflush(stdout); // clear the stdout stream
+        fflush(stderr); // clear the stderr stream
 
-        dup2(file_desc, STDOUT_FILENO); //direct output from stdout to file
-        dup2(file_desc, STDERR_FILENO); //direct output from stderr to file
-        close(file_desc); //close file
+        dup2(file_desc, STDOUT_FILENO); // direct output from stdout to file
+        dup2(file_desc, STDERR_FILENO); // direct output from stderr to file
+        close(file_desc); // close file
 
         command(args);
 
-        //original_array[0] = original_out;
-        //original_array[1] = original_err;
+        // original_array[0] = original_out;
+        // original_array[1] = original_err;
         return 0;
     } else {
         // perror("Error opening the file.\n");
@@ -186,10 +186,10 @@ int write_to_file(int *original_array, char file_name[], char args[][256], int k
 }
 
 void close_file(int original_out, int original_err) {
-    fflush(stdout); //clear stdout stream
-    fflush(stderr); //clear stderr stream
-    dup2(original_out,STDOUT_FILENO); //restore original stdout
-    dup2(original_out,STDERR_FILENO); //restore original stderr
+    fflush(stdout); // clear stdout stream
+    fflush(stderr); // clear stderr stream
+    dup2(original_out, STDOUT_FILENO); // restore original stdout
+    dup2(original_out, STDERR_FILENO); // restore original stderr
     close(original_out);
     close(original_err);
 }
@@ -253,10 +253,10 @@ char **reconstruct_redirect(char **split_array, int *split_array_size, size_t ch
         if ((i + 1) < (2 * *split_array_size - 1) || (i + 1) == 1) {
             new_array[i + 1] = strdup(delimiter);
             char_count += strlen(delimiter);
-        new_array_size++;
+            new_array_size++;
         }
     }
-    free_array(reformed_array,*split_array_size);
+    free_array(reformed_array, *split_array_size);
 
     reformed_string = reform_string(0, new_array, new_array_size, char_count);
 
@@ -294,7 +294,6 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         free(split_array);
         exit(0);
     }
-
 
     if (strcmp(split_array[0], "cd") == 0) {
         char *apostrophe_str = apostrophe_string(reform_string(1, split_array, split_array_size, character_count),
@@ -396,16 +395,15 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
     }
 }
 
-
 int main(int MainArgc, char *MainArgv[]) {
-    char *buffer; //address of first character of string input
-    size_t buffer_size = 0; //size of input buffer
+    char *buffer; // address of first character of string input
+    size_t buffer_size = 0; // size of input buffer
 
-    //get input string and store in buffer, change size of input buffer
+    // get input string and store in buffer, change size of input buffer
     size_t character_count;
     // = getline(&buffer, &buffer_size, stdin);     //number of characters stored in character_count
 
-    //buffer[strcspn(buffer, "\n")] = 0;      // remove '\n' from end of line
+    // buffer[strcspn(buffer, "\n")] = 0;      // remove '\n' from end of line
     int split_array_size = MAX;
     char **split_array = (char **) malloc(sizeof(char *) * MAX);
     int status;
@@ -425,13 +423,13 @@ int main(int MainArgc, char *MainArgv[]) {
         is_batch = true;
     }
     if (!is_batch) {
-        //interactive mode
+        // interactive mode
         while (1) {
             printf("shell> ");
             shell(character_count, buffer, &buffer_size, split_array, split_array_size, &status, "interactive");
         }
     } else {
-        //batch mode
+        // batch mode
         FILE *batch_file;
         char *file_name = MainArgv[1];
         size_t argument_length;
