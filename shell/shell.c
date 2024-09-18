@@ -362,6 +362,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
             for (int i = 1; i < split_array_size; i++) {
                 PATH[i - 1] = strdup(split_array[i]);
                 // path_last_index++;
+            }
                 return;
             }
         }
