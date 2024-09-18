@@ -343,30 +343,8 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
     }
 
     if (strcmp(split_array[0], "cd") == 0) {
-        char *apostrophe_str = apostrophe_string(reform_string(1, split_array, split_array_size, character_count),
-                                                 character_count);
-        if (apostrophe_str != NULL) {
-            if (chdir(apostrophe_str) != 0) {
-                // fprintf(stderr, "The specified directory does not exist.\n");
-                error();
-            }
-            free(apostrophe_str);
-            return;
-        } else {
-            if (split_array_size == 2) {
-                if (chdir(split_array[1]) != 0) {
-                    // fprintf(stderr, "The specified directory does not exist.\n");
-                    error();
-                }
-                return;
-            } else if (split_array_size != 2) {
-                // fprintf(
-                //     stderr,
-                //     "Please enter cd folllowed by a directory. For directories with spaces, please surround the directory string with ''.\n");
-                error();
-                return;
-            }
-        }
+        cd(1, split_array, split_array_size, character_count);
+        return;
     }
 
     if (strcmp(split_array[0], "path") == 0) {
