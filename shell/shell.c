@@ -250,6 +250,7 @@ char **reconstruct_redirect(char **split_array, int *split_array_size, size_t ch
     char **new_array = (char **) malloc(sizeof(char *) * (2 * *split_array_size - 1));
     char_count = 0;
     int new_array_size = 0;
+    bool broke = false;
     for (int i = 0, j = 0; i <= (*split_array_size); i += 2, j++) {
         new_array[i] = strdup(reformed_array[j]);
         char_count += strlen(reformed_array[j]);
