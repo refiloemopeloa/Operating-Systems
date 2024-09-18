@@ -258,6 +258,8 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
             return;
         // character_count = *buffer_size;
         buffer[strcspn(buffer, "\n")] = 0;
+    } else {
+        character_count = strlen(buffer);
     }
 
     split_array = split(split_array_size, buffer, &split_array_size, " \t");
