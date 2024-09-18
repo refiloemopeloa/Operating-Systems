@@ -6,4 +6,4 @@ cmake-build-debug/
 
 batch.txt
 
-temp.c
+tests/
