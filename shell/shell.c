@@ -329,6 +329,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         pid_t p = fork();
         if (p == 0) {
             for (int i = 0; i < split_array_size; i++) {
+                    restructured = true;
                 if (strcmp(split_array[i], ">") == 0) {
                     redirect(split_array, split_array_size, i);
                     exit(0);
