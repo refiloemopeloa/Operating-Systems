@@ -364,7 +364,6 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
                 // path_last_index++;
             }
                 return;
-            }
         }
     }
     bool restructured = false;
