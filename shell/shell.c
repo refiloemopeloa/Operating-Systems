@@ -8,12 +8,12 @@
 #include <fcntl.h>
 #include <errno.h>
 
-#define MAX 32
-char **PATH;
-int path_args = 0;
-// int path_last_index = 1;
+#define MAX 32  //max size for most if not all arrays
+char **PATH; //path list
+int path_args = 0; //size of path list
 
 void free_array(char **array, int array_size) {
+    //function for freeing array memory
     for (int i = 0; i < array_size; i++) {
         free(array[i]);
     }
@@ -21,11 +21,13 @@ void free_array(char **array, int array_size) {
 }
 
 void error() {
+    //error message function
     char error_message[30] = "An error has occurred\n";
     write(STDERR_FILENO, error_message, strlen(error_message));
 }
 
 char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *delimiter) {
+    //function for splitting strings according to some delimiter
     *(buffer_size) = 0;
     char **returned_array = (char **) malloc(sizeof(char *) * split_array_size);
 
@@ -40,6 +42,7 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
 
     char **resized_array = (char **) malloc(sizeof(char *) * (*(buffer_size) + 1));
     for (int i = 0; i < *(buffer_size); i++) {
+        //for loop for resizing array as an attempt to save memory space
         resized_array[i] = strdup(returned_array[i]);
     }
     free(returned_array);
@@ -52,6 +55,7 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
 }
 
 char *get_file(FILE *file_ptr, char *file_name, size_t length, char *mode) {
+    //function for opening file in read mode and retreiving contents of file
     if (strcmp(mode, "rb") == 0) {
         file_ptr = fopen(file_name, mode);
         if (file_ptr) {
@@ -71,13 +75,12 @@ char *get_file(FILE *file_ptr, char *file_name, size_t length, char *mode) {
     } else {
         fprintf(stderr, "Please use te get_file() method with "
                 "rb"
-                " mode");
-        // return;
+                " mode"); //error for programmer, not for user
     }
 }
 
-// char *apostrophe_string(char *reformed_string, size_t string_size) {
-//     char *token = strchr(reformed_string, '\'');
+// char *apostrophe_string(char *reformed_string, size_t string_size) {     // I implemented this function to handle cases where a directory that contains white spaces is inputed
+//     char *token = strchr(reformed_string, '\'');                         //however, i hid it as it wasn't a requirement and it was causing some of my test cases to fail
 //     char *token_string = (char *) malloc(sizeof(char) * string_size);
 //     char *returned_string = (char *) malloc(sizeof(char) * string_size);
 //     strcpy(token_string, reformed_string);
@@ -104,8 +107,10 @@ char *get_file(FILE *file_ptr, char *file_name, size_t length, char *mode) {
 // }
 
 char *reform_string(int start, char **split_array, size_t split_array_size, size_t char_size) {
+    //function for reformatting a string
     char *new_string = (char *) malloc(char_size * sizeof(char));
-    int i = start;
+    //used for cases where strings are entered an argumnent is entered with no spaces
+    int i = start; //eg redirection or parallel
     for (i = start; i < split_array_size - 1; i++) {
         if (split_array_size == 0)
             return NULL;
@@ -133,6 +138,7 @@ char *reform_string(int start, char **split_array, size_t split_array_size, size
 }
 
 char *valid_path(char *exe) {
+    //function for checking if a path is valid and returning it if it is
     for (int i = 0; i < path_args; i++) {
         char *path = (char *) malloc((strlen(PATH[i]) + strlen(exe) + 1) * sizeof(char));
         strcpy(path, PATH[i]);
@@ -143,10 +149,11 @@ char *valid_path(char *exe) {
         }
     }
 
-    return "\0";
+    return "\0"; //return null if path is invalid
 }
 
 void command(char **arg_list) {
+    //function for executing miscellaneous commands like ls and pwd
     char *path = valid_path(arg_list[0]);
     if (path[0] == '\0') {
         // perror(arg_list[0]);
@@ -162,6 +169,7 @@ void command(char **arg_list) {
 }
 
 int write_to_file(int *original_array, char file_name[], char args[][256], int key) {
+    //function for writing to a file
     int original_out = dup(STDOUT_FILENO); // save the current state of the stdout file descriptor
     int original_err = dup(STDERR_FILENO);
 
@@ -199,6 +207,7 @@ void close_file(int original_out, int original_err) {
 }
 
 void redirect(char **split_array, int split_array_size, int key) {
+    //function for redirection
     if (split_array_size - 1 != key + 1) {
         // perror("Enter one file for redirection only.\n");
         error();
@@ -222,6 +231,7 @@ void redirect(char **split_array, int split_array_size, int key) {
 }
 
 int *parallel_positions(char **split_array, int split_array_size, int count) {
+    //function for finding the positions in the string of the parallel character "&"
     int *positions = (int *) malloc(count * sizeof(int));
     for (int i = 0, j = 0; i < split_array_size; i++) {
         if (strcmp(split_array[i], "&") == 0) {
@@ -233,6 +243,7 @@ int *parallel_positions(char **split_array, int split_array_size, int count) {
 }
 
 int parallel_check(char **split_array, int split_array_size) {
+    //function for checking if input should be run in parallel
     int count = 0;
     for (int i = 0; i < split_array_size; i++) {
         if (strchr(split_array[i], '&')) {
@@ -243,6 +254,7 @@ int parallel_check(char **split_array, int split_array_size) {
 }
 
 char **reconstruct_redirect(char **split_array, int *split_array_size, size_t char_count, char *delimiter) {
+    //function for reconstructing redirected strings
     char *reformed_string = reform_string(0, split_array, *split_array_size, char_count);
 
     char **reformed_array = split(MAX, reformed_string, split_array_size, delimiter);
@@ -283,6 +295,7 @@ char **reconstruct_redirect(char **split_array, int *split_array_size, size_t ch
 }
 
 void cd(int start, char **split_array, int split_array_size, int character_count) {
+    //function for changing directory
     char *reformed_string = reform_string(start, split_array, split_array_size, character_count);
     if (reformed_string != NULL) {
         if (chdir(reformed_string) != 0) {
@@ -310,7 +323,9 @@ void cd(int start, char **split_array, int split_array_size, int character_count
 
 void shell(size_t character_count, char *buffer, size_t *buffer_size, char **split_array, int split_array_size,
            int *status, char *mode) {
+    //overall shell implementation
     if (strcmp(mode, "interactive") == 0) {
+        //check for interactive mode or batch mode
         buffer = NULL;
         character_count = getline(&buffer, buffer_size, stdin);
         if (character_count == -1) {
@@ -327,6 +342,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
     split_array = split(split_array_size, buffer, &split_array_size, " \t");
 
     if (*split_array == NULL) {
+        //if array is empty, no arguments, return
         return;
     }
 
@@ -343,6 +359,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
     }
 
     if (strcmp(split_array[0], "cd") == 0) {
+        //cd
         cd(1, split_array, split_array_size, character_count);
         return;
     }
@@ -368,10 +385,16 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
     }
     bool restructured = false;
     int parallel_count = parallel_check(split_array, split_array_size);
+        //path
+    bool restructured = false; //flag for if a string has been reformatted or not
+    int parallel_count = parallel_check(split_array, split_array_size); //how many children to create
     if (parallel_count < 1) {
         pid_t p = fork();
+        //only make one child for a command
+        pid_t p = fork(); //create child
         if (p == 0) {
             for (int i = 0; i < split_array_size; i++) {
+                //check for redirection
                 if (strchr(split_array[i], '>') && restructured == false) {
                     split_array = reconstruct_redirect(split_array, &split_array_size, character_count, ">");
                     restructured = true;
@@ -385,16 +408,23 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
             }
             command(split_array);
             exit(0);
+            command(split_array); //execute command
         } else {
             waitpid(-1, status, 0);
         }
     } else if (parallel_count > 0) {
+        //parallel mode
         int *parallel_pos = parallel_positions(split_array, split_array_size, parallel_count);
+        //position(s) of parallel markers
         char **reformed_parallel_args = reconstruct_redirect(split_array, &split_array_size, character_count, "&");
+        //reformat string to have spaces in between, particularly when commands aren't seperated by spaces
         char *reformed_string = reform_string(0, reformed_parallel_args, split_array_size, character_count);
+        //format string with spaces
         char **parallel_args = split(MAX, reformed_string, &parallel_count, "&");
+        //split each argument by parallel marker
 
         for (int i = 0; i < parallel_count; i++) {
+            //for loop for creating children
             if (fork() == 0) {
                 int current_arg_size = 0;
                 char **current_arg = split(MAX, parallel_args[i], &current_arg_size, " \t");
@@ -421,6 +451,7 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
 }
 
 int main(int MainArgc, char *MainArgv[]) {
+    //most if not all initialization happens here
     char *buffer; // address of first character of string input
     size_t buffer_size = 0; // size of input buffer
 
@@ -433,15 +464,13 @@ int main(int MainArgc, char *MainArgv[]) {
     char **split_array = (char **) malloc(sizeof(char *) * MAX);
     int status;
 
-    PATH = (char **) malloc(sizeof(char *) * MAX);
-    // for (int i = 0; i < MAX; i++) {
-    //     PATH[i] = (char *) malloc(sizeof(char) * 256);
-    // }
+    PATH = (char **) malloc(sizeof(char *) * MAX); //path list initialization
     PATH[0] = strdup("/bin/");
     path_args++;
 
-    bool is_batch = false;
+    bool is_batch = false; //flag for batch mode
     if (MainArgc > 1) {
+        //check that correct number of arguments are passed
         if (MainArgc > 2) {
             error();
             exit(1);
@@ -459,8 +488,9 @@ int main(int MainArgc, char *MainArgv[]) {
         FILE *batch_file;
         char *file_name = MainArgv[1];
         size_t argument_length;
-        char *file_contents = get_file(batch_file, file_name, character_count, "rb");
+        char *file_contents = get_file(batch_file, file_name, character_count, "rb"); //get contents from file
         char **argument_list = split(MAX, file_contents, &argument_length, "\r\n");
+        //seperate contents by new line markers
         int i = 0;
         while (1) {
             if (i == argument_length)
