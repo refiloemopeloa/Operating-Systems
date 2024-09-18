@@ -48,9 +48,6 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
     free(returned_array);
     resized_array[*buffer_size] = NULL;
 
-    // while ((*(returned_array + *(buffer_size)) = strsep(&buffer, delimiter)) != NULL) {
-    //     *(buffer_size) = *(buffer_size) + 1;
-    // }
     return resized_array;
 }
 
@@ -156,14 +153,11 @@ void command(char **arg_list) {
     //function for executing miscellaneous commands like ls and pwd
     char *path = valid_path(arg_list[0]);
     if (path[0] == '\0') {
-        // perror(arg_list[0]);
         error();
         return;
     }
     int exec_status = execv(path, arg_list);
     if (exec_status == -1) {
-        // perror(arg_list[0]);
-        // fprintf(stderr, "'%s' doesn't exist.\n", arg_list[0]);
         error();
     }
 }
@@ -187,11 +181,8 @@ int write_to_file(int *original_array, char file_name[], char args[][256], int k
 
         command(args);
 
-        // original_array[0] = original_out;
-        // original_array[1] = original_err;
         return 0;
     } else {
-        // perror("Error opening the file.\n");
         error();
         return -1;
     }
@@ -209,12 +200,10 @@ void close_file(int original_out, int original_err) {
 void redirect(char **split_array, int split_array_size, int key) {
     //function for redirection
     if (split_array_size - 1 != key + 1) {
-        // perror("Enter one file for redirection only.\n");
         error();
         return;
     }
     if (strcmp(split_array[key + 1], ">") == 0) {
-        // perror("Enter \">\" followed by a file name.");
         error();
         return;
     }
@@ -299,7 +288,6 @@ void cd(int start, char **split_array, int split_array_size, int character_count
     char *reformed_string = reform_string(start, split_array, split_array_size, character_count);
     if (reformed_string != NULL) {
         if (chdir(reformed_string) != 0) {
-            // fprintf(stderr, "The specified directory does not exist.\n");
             error();
         }
         free(reformed_string);
@@ -307,14 +295,10 @@ void cd(int start, char **split_array, int split_array_size, int character_count
     } else {
         if (split_array_size == 2) {
             if (chdir(split_array[1]) != 0) {
-                // fprintf(stderr, "The specified directory does not exist.\n");
                 error();
             }
             return;
         } else if (split_array_size != 2) {
-            // fprintf(
-            //     stderr,
-            //     "Please enter cd folllowed by a directory. For directories with spaces, please surround the directory string with ''.\n");
             error();
             return;
         }
@@ -364,13 +348,12 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
         }
         if (character_count == 1 && strcmp(buffer, "\n") == 0)
             return;
-        // character_count = *buffer_size;
         buffer[strcspn(buffer, "\n")] = 0;
     } else {
         character_count = strlen(buffer);
     }
 
-    split_array = split(split_array_size, buffer, &split_array_size, " \t");
+    split_array = split(split_array_size, buffer, &split_array_size, " \t"); //split input into array
 
     if (*split_array == NULL) {
         //if array is empty, no arguments, return
@@ -464,9 +447,7 @@ int main(int MainArgc, char *MainArgv[]) {
 
     // get input string and store in buffer, change size of input buffer
     size_t character_count;
-    // = getline(&buffer, &buffer_size, stdin);     //number of characters stored in character_count
 
-    // buffer[strcspn(buffer, "\n")] = 0;      // remove '\n' from end of line
     int split_array_size = MAX;
     char **split_array = (char **) malloc(sizeof(char *) * MAX);
     int status;
