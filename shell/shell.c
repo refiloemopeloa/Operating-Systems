@@ -258,7 +258,7 @@ char **reconstruct_redirect(char **split_array, int *split_array_size, size_t ch
     }
     free_array(reformed_array,*split_array_size);
 
-    reformed_string = reform_string(0, new_array, (2 * *split_array_size - 1), char_count);
+    reformed_string = reform_string(0, new_array, new_array_size, char_count);
 
     reformed_array = split(MAX, reformed_string, split_array_size, " \t");
 
