@@ -14,7 +14,7 @@ int path_args = 0;
 // int path_last_index = 1;
 
 void free_array(char **array, int array_size) {
-    for (size_t i = 0; i < array_size; i++) {
+    for (int i = 0; i < array_size; i++) {
         free(array[i]);
     }
     free(array);
