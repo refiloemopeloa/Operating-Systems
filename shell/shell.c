@@ -120,7 +120,7 @@ char *reform_string(int start, char **split_array, size_t split_array_size, size
     } else if (i == split_array_size || i == start)
         strcpy(new_string, split_array[split_array_size - 1]);
     else {
-        if (strlen(new_string) + strlen(split_array[split_array_size - 1]) == char_size) {
+        if (strlen(new_string) + strlen(split_array[split_array_size - 1]) >= char_size) {
             char_size += strlen(split_array[split_array_size - 1]);
             char *resized_string = (char *) malloc((char_size) * sizeof(char));
             strcpy(resized_string, new_string);
