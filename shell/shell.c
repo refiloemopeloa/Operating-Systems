@@ -42,7 +42,7 @@ char **split(size_t split_array_size, char *buffer, size_t *buffer_size, char *d
     // while ((*(returned_array + *(buffer_size)) = strsep(&buffer, delimiter)) != NULL) {
     //     *(buffer_size) = *(buffer_size) + 1;
     // }
-    return returned_array;
+    return resized_array;
 }
 
 char *get_file(FILE *file_ptr, char *file_name, size_t length, char *mode) {
