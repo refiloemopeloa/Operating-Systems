@@ -106,10 +106,13 @@ char *reform_string(int start, char **split_array, size_t split_array_size, size
             strcat(new_string, split_array[i]);
         strcat(new_string, " ");
     }
-    strcat(new_string, split_array[split_array_size - 1]);
     if (split_array_size - 1 == 0) {
         strcpy(new_string, split_array[i]);
         strcat(new_string, split_array[i + 1]);
+    } else if (i == split_array_size || i == start)
+        strcpy(new_string, split_array[split_array_size - 1]);
+    else
+        strcat(new_string, split_array[split_array_size - 1]);
     return new_string;
 }
 
