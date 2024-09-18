@@ -117,7 +117,7 @@ char *reform_string(int start, char **split_array, size_t split_array_size, size
 }
 
 char *valid_path(char *exe) {
-    char *path = (char *) malloc(MAX * sizeof(char));
+    char *path = (char *) malloc((strlen(PATH[0]) + strlen(exe) + 1) * sizeof(char));
     strcpy(path, PATH[0]);
     strcat(path, exe);
     if (access(path, X_OK) == 0) {
