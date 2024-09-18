@@ -3,3 +3,7 @@ CMakeLists.txt
 .idea/
 
 cmake-build-debug/
+
+batch.txt
+
+temp.c
