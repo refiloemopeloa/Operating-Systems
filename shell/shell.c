@@ -312,13 +312,13 @@ void shell(size_t character_count, char *buffer, size_t *buffer_size, char **spl
                 for (int i = 0; i < path_args; i++)
                     strcpy(PATH[i], "");
             path_args = split_array_size;
-            path_last_index = 0;
+            // path_last_index = 0;
             return;
         } else {
             path_args = split_array_size - 1;
             for (int i = 1; i < split_array_size; i++) {
-                strcpy(PATH[path_last_index], split_array[i]);
-                path_last_index++;
+                strcpy(PATH[i - 1], split_array[i]);
+                // path_last_index++;
                 return;
             }
         }
