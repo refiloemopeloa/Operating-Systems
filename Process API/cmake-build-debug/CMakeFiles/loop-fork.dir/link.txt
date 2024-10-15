@@ -1,1 +1,0 @@
-/usr/bin/gcc -g CMakeFiles/loop-fork.dir/loop-fork.c.o -o loop-fork 

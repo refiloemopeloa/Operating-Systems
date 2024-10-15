@@ -1,1 +1,0 @@
-/usr/bin/gcc -g CMakeFiles/catch-signal.dir/catch-signal.c.o -o catch-signal 

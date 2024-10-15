@@ -1,1 +1,0 @@
-/usr/bin/gcc -g CMakeFiles/fork.dir/fork.c.o -o fork 
